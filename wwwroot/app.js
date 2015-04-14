@@ -1,0 +1,1 @@
+!function(){"use strict";var a=angular.module("morseCodeApp",["ngResource"]);a.controller("MorseController",["$scope","MorseCode",function(a,b){a.morseCode=b.query(),console.log(a.morseCode)}])}(),function(){"use strict";angular.module("morseCodeApp").factory("MorseCode",["$resource",function(a){return a("/api/morsecode",{},{query:{method:"GET",params:{},isArray:!0}})}])}();
