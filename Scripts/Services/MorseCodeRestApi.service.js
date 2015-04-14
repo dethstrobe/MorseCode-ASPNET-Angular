@@ -3,7 +3,7 @@
 
 	angular.module('morseCodeApp')
 
-	.factory('MorseCode', ['$resource', function ($resource) {
+	.factory('MorseCodeRestApi', ['$resource', function ($resource) {
 		return $resource('/api/morsecode', {}, {
 			query: {method: 'GET', params: {}, isArray: true}
 		});
