@@ -6,8 +6,8 @@
 	app.controller('MorseCodeController', ['$scope', 'MorseCodeRestApi', 'morseCodeConvertor', function ($scope, MorseCodeRestApi, morseCodeConvertor) {
 
 		$scope.userData = {
-			name: '',
-			gender: 'female'
+			'name': '',
+			'gender': 'female'
 		};
 
 		//holds names that have already been submitted
@@ -18,7 +18,6 @@
 			return morseCodeConvertor.convertTo(name);
 		};
 
-		console.log($scope.morseCode);
 	}]);
 
 	app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

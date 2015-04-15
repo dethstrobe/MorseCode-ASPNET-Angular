@@ -6,10 +6,10 @@ namespace MorseCodeApp.Models
 {
     public class Morse
     {
-        public int Id { get; set; }
+        public int id { get; set; }
  
-        public string Name { get; set; }
+        public string name { get; set; }
  
-        public string Gender { get; set; }
+        public string gender { get; set; }
     }
 }
