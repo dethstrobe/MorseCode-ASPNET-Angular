@@ -60,7 +60,7 @@
         </tr>
         <tr ng-repeat="user in otherUsers | filter:{ gender: 'male' }:true | orderBy: 'name' :false">
           <td>{{user.name}}</td>
-          <td ng-bind="convertTo(user.Name)"></td>
+          <td ng-bind="convertTo(user.name)"></td>
           <td><a ng-click="deleteName(user.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
         </tr>
       </table>

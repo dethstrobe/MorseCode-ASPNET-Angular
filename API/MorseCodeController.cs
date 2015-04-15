@@ -16,10 +16,10 @@ namespace MorseCodeApp.API.Controllers
         public IEnumerable<Morse> Get()
         {
             return new List<Morse> {
-                new Morse {Id=1, Name="Billy", Gender="Male"},
-                new Morse {Id=2, Name="Joe", Gender="Male"},
-                new Morse {Id=3, Name="Sue", Gender="Female"},
-                new Morse {Id=4, Name="Lara", Gender="Female"}
+                new Morse {id=1, name="Billy", gender="male"},
+                new Morse {id=2, name="Joe", gender="male"},
+                new Morse {id=3, name="Sue", gender="female"},
+                new Morse {id=4, name="Lara", gender="female"}
             };
         }
 
