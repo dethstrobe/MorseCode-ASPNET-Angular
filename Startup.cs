@@ -98,25 +98,5 @@ namespace WebApp
             });
         }
 
-        private static async Task CreateSampleData(IServiceProvider applicationService)
-        {
-            using (var dbContext = applicationService.GetService<MorseCodeContext>())
-            {
-                var sqlServerDatabase = dbContext.Database as SqlServerDatabase;
-                if (sqlServerDatabase != null)
-                {
-                    sqlServerDatabase.EnsureCreatedAsync().Wait();
-                }
-    
-                // add some movies
-                var morse = new List<Morse> {
-                    new Morse {id=1, name="Billy", gender="male"},
-                    new Morse {id=2, name="Joe", gender="male"},
-                    new Morse {id=3, name="Sue", gender="female"},
-                    new Morse {id=4, name="Lara", gender="female"}
-                };
-                morse.ForEach(m => dbContext.Morse.AddAsync(m));
-            }
-        }
     }
 }

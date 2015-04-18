@@ -12,30 +12,11 @@ namespace WebApp.Controllers
         {
             return View();
         }
-
-        public IActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View("~/Views/Shared/Error.cshtml");
-        }
     }
 
     public class HelloWorldController : Controller
     {
-        //
+        //some simple examples I made while learning ASP.NET
         //GET: /HelloWorld/
 
         public string Index()
@@ -51,11 +32,4 @@ namespace WebApp.Controllers
         }
     }
 
-    public class MorseCodeController : Controller
-    {
-        public string Index ()
-        {
-            return "Testing Morse Code";
-        }
-    }
 }
