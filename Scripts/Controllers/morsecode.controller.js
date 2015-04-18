@@ -40,7 +40,13 @@
 
 		//this removes a name from mondoDB
 		$scope.deleteName = function (nameID) {
-			$http.delete('/api/morsecode/' + nameID);
+			$http.delete('/api/morsecode/' + nameID)
+				.success(function(data, status, headers, config) {
+					$scope.otherUsers = data;
+				})
+				.error(function(data, status, headers, config) {
+					throw data;
+				});
 		};
 
 	}]);

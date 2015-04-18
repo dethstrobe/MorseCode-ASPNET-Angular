@@ -11,9 +11,6 @@ namespace WebApp.API.Controllers
     [Route("api/[controller]")]
     public class MorseCodeController : Controller
     {
-        // private readonly MorseCodeContext _dbContext;
-
-        public int MorseId = 5;
 
         public static List<Morse> initialList = new List<Morse> {
                 new Morse {id=1, name="Billy", gender="male"},
@@ -21,16 +18,6 @@ namespace WebApp.API.Controllers
                 new Morse {id=3, name="Sue", gender="female"},
                 new Morse {id=4, name="Lara", gender="female"}
             };
-
-        // public MorseCodeController(MorseCodeContext dbContext) 
-        // {
-        //     List<Morse> initialList = new List<Morse> {
-        //         new Morse {id=1, name="Billy", gender="male"},
-        //         new Morse {id=2, name="Joe", gender="male"},
-        //         new Morse {id=3, name="Sue", gender="female"},
-        //         new Morse {id=4, name="Lara", gender="female"}
-        //     };
-        // }
 
         // GET: api/values
         [HttpGet]
@@ -42,38 +29,25 @@ namespace WebApp.API.Controllers
         [HttpPost]
         public List<Morse> Post([FromBody]Morse morse)
         {
+            int NextId = initialList[initialList.Count - 1].id+1;
+
             List<Morse> listToAdd = new List<Morse>{
-                new Morse {id=MorseId++, name=morse.name, gender=morse.gender}
+                new Morse {id=NextId, name=morse.name, gender=morse.gender}
             };
+
             // Put whatever you want in the second list
             initialList.AddRange(listToAdd);
 
             return initialList;
         }
 
-        // // GET api/values/5
-        // [HttpGet("{id}")]
-        // public string Get(int id)
-        // {
-        //     return "value";
-        // }
+        [HttpDelete("{id:int}")]
+        public List<Morse> Delete(int Id)
+        {
+            
+            initialList.RemoveAll(Morse => Morse.id == Id);
 
-        // // POST api/values
-        // [HttpPost]
-        // public void Post([FromBody]string value)
-        // {
-        // }
-
-        // // PUT api/values/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+            return initialList;
+        }
     }
 }
