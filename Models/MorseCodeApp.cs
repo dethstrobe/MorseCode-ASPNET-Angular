@@ -2,7 +2,7 @@ using System;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MorseCodeApp.Models
+namespace WebApp.Models
 {
     public class Morse
     {
@@ -11,5 +11,6 @@ namespace MorseCodeApp.Models
         public string name { get; set; }
  
         public string gender { get; set; }
+
     }
 }

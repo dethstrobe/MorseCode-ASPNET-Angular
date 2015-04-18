@@ -5,7 +5,7 @@
         }
     },
     "EntityFramework": {
-        "ApplicationDbContext": {
+        "MorseCodeContext": {
             "ConnectionString": "Data:DefaultConnection:ConnectionString"
         }
     }

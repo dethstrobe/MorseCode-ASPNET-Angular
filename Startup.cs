@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Diagnostics.Entity;
@@ -8,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Routing;
 using Microsoft.AspNet.Security.Cookies;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.SqlServer;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
@@ -39,12 +42,12 @@ namespace WebApp
             {
                 services.AddEntityFramework(Configuration)
                         .AddInMemoryStore()
-                        .AddDbContext<ApplicationDbContext>();
+                        .AddDbContext<MorseCodeContext>();
             }
 
             // Add Identity services to the services container.
             services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<MorseCodeContext>();
 
             // Add MVC services to the services container.
             services.AddMvc();
@@ -93,6 +96,27 @@ namespace WebApp
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
+        }
+
+        private static async Task CreateSampleData(IServiceProvider applicationService)
+        {
+            using (var dbContext = applicationService.GetService<MorseCodeContext>())
+            {
+                var sqlServerDatabase = dbContext.Database as SqlServerDatabase;
+                if (sqlServerDatabase != null)
+                {
+                    sqlServerDatabase.EnsureCreatedAsync().Wait();
+                }
+    
+                // add some movies
+                var morse = new List<Morse> {
+                    new Morse {id=1, name="Billy", gender="male"},
+                    new Morse {id=2, name="Joe", gender="male"},
+                    new Morse {id=3, name="Sue", gender="female"},
+                    new Morse {id=4, name="Lara", gender="female"}
+                };
+                morse.ForEach(m => dbContext.Morse.AddAsync(m));
+            }
         }
     }
 }
